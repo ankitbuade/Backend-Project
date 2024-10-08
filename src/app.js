@@ -1,24 +1,11 @@
 const express =require ("express")
 const app = express()
+const {adminAuth} = require("./middlewares/auth")
 
-app.get("/user",(req,res)=>{
-    res.send("GET Api run successfully ")
-})
+app.use("/admin", adminAuth)
 
-app.post("/user",(req,res)=>{
-    res.send("POST Api run successfully")
-})
-
-app.put("/user", (req,res)=>{
-    res.send("PUT Api run successfully")
-})
-
-app.delete("/user",(req,res)=>{
-    res.send ("DELETE Api run successfully")
-})
-
-app.use("/user",(req,res)=>{
-    res.send("hello this is use page")
+app.get("/admin/isUserDeleted",(req,res)=>{
+    res.send("user Deleted")
 })
 
 app.listen(3000,()=>{
