@@ -1,20 +1,33 @@
 const express =require ("express")
 const app = express()
-const {adminAuth} = require("./middlewares/auth")
+const {connectDB} = require ("./config/database")
+const User = require ("./model/user")
 
-app.use("/admin", adminAuth)
+ app.use(express.json())
 
-app.get("/admin/isUserDeleted",(req,res)=>{
-    throw new error("request not valid")
-    res.send("user Deleted")
+app.post("/signup",async(req,res)=>{
+   
+        const user = new User (req.body)
+        console.log(req.body)
+
+        try {
+            await user.save()
+            res.send("data sent successfully")
+        }
+        catch(err){
+            res.status(400).send("error occured")
+
+        }
 })
 
-app.use("/" ,( err, req,res,next)=>{
-    if(err){
-        res.status(500).send("oops something went wrong")
-    }
+connectDB ()
+.then(()=>{
+    console.log("connection ehtablish to DB")
+    app.listen(3000,()=>{
+        console.log("server conected")
+    })
 })
-
-app.listen(3000,()=>{
-    console.log("server connected")
-})
+.catch((err)=>{
+    console.error("cant coonnect")
+}
+)
