@@ -10,6 +10,10 @@ const userSchema = mongoose.Schema({
     password : {
         type : String,
     },
+      emailId : {
+            type :String,
+    },
+
     age :{
         type : Number,
     }
