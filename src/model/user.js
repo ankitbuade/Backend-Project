@@ -13,6 +13,7 @@ const userSchema = mongoose.Schema({
     },
     password : {
         type : String,
+        required : true
         
     },
       emailId : {
@@ -38,6 +39,9 @@ const userSchema = mongoose.Schema({
         max : 70
     },
 
+    skills : {
+        type : [String]
+    }
    
 
 }, {
