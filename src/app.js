@@ -8,7 +8,7 @@ const User = require ("./model/user")
 app.post("/signup",async(req,res)=>{
    
         const user = new User (req.body)
-        console.log(req.body)
+        // console.log(req.body)
 
         try {
             await user.save()
@@ -83,7 +83,7 @@ app.patch("/user/:userId",async(req,res)=>{
 
     }
     catch(err){
-        res.status(400).send("something went wrong"+err.message)
+        res.status(400).send("something went wrong"+ err.message)
        
     }
 })

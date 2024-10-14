@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const validator = require("validator")
 
 const userSchema = mongoose.Schema({
     firstName : {
@@ -21,7 +22,23 @@ const userSchema = mongoose.Schema({
             unique : true,
             required : true,
             lowercase : true,
-            trim : true
+            trim : true,
+        validate(value){
+                if(!validator.isEmail(value)){
+               throw new Error ("invalid Email " + value)
+                }     
+        }
+    },
+
+    photoURL : {
+            type : String,
+            default : "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+
+        validate(value){
+            if(!validator.isURL(value)){
+                throw new Error("invalid Photo" + value)
+            }
+        }
     },
 
     gender : {
