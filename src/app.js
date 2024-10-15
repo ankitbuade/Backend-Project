@@ -4,8 +4,10 @@ const {connectDB} = require ("./config/database")
 const User = require ("./model/user")
 const {signupValidation} = require("./utils/validation")
 const bcrypt = require("bcrypt")
+const cookieParser = require("cookie-parser")
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.post("/signup",async(req,res)=>{
 
@@ -131,6 +133,14 @@ app.post("/login", async (req,res)=>{
         res.status(400).send("something went wrong"+ err.message)
        
     }
+})
+
+app.get("/profile", async (req,res)=>{
+    const cookies= req.cookies
+
+    console.log(cookies)
+    res.send("reading cookies")
+    
 })
 
 
