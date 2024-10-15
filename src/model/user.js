@@ -12,11 +12,7 @@ const userSchema = mongoose.Schema({
         type : String,
        
     },
-    password : {
-        type : String,
-        required : true
-        
-    },
+    
       emailId : {
             type :String,
             unique : true,
@@ -28,6 +24,11 @@ const userSchema = mongoose.Schema({
                throw new Error ("invalid Email " + value)
                 }     
         }
+    },
+    password : {
+        type : String,
+        required : true
+        
     },
 
     photoURL : {
