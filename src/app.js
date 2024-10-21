@@ -121,8 +121,7 @@ app.post("/login", async (req,res)=>{
 
            const token = await jwt.sign({_id : user._id
            },"Dev@123456")
-           console.log(token)
-
+           
             res.cookie("token",token)
             res.send("login SUccessfull")
         } else {
@@ -155,8 +154,7 @@ app.get("/profile", async (req,res)=>{
     const decodedMessage = await jwt.verify(token , "Dev@123456" )
 
     const {_id} = decodedMessage
-    console.log("Logged in user is " + _id)
- 
+   
     const user= await User.findById(_id)
     if(!user){
         throw new Error ("user does not exist")
