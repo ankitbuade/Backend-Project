@@ -10,7 +10,7 @@ const userAuth = async (req,res,next)=>{
     }
 
     try {
-        const decodeObj = await jwt.verify(token,"Dev@123456")
+        const decodeObj = jwt.verify(token,"Dev@123456")
 
     const {_id} = decodeObj
 
